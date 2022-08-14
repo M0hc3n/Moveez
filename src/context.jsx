@@ -3,15 +3,14 @@ import useFetch from './useFetch'
 
 const AppContext = React.createContext()
 
+const randomMovie = ['joker', 'batman', 'fast furious', 'hello', 'spy', 'america', 'time', 'die hard']
 
-const randomChar = ()=>{
-    const randomNum = Math.floor( Math.random * 26) + 97
-    return String.fromCharCode(randomNum)
-}
 
 const AppProvider = ({children}) =>{
     
-    const [searchedFor, setSearchedFor] = useState("batman")
+    const [randomNum , setRandomNum] = useState(Math.floor(Math.random() * randomMovie.length))
+    const [searchedFor, setSearchedFor] = useState(randomMovie[randomNum])
+
     const{ loading, error, data: movies} = useFetch(`&s=${searchedFor}`)
 
     
